@@ -1,0 +1,1 @@
+A modern smartlock website built for a Finnish company with Next.js, TypeScript, and Tailwind CSS, featuring responsive design, product showcases, and clear call-to-actions to promote and sell smartlocks.
