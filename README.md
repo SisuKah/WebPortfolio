@@ -31,7 +31,7 @@ I’m a **20-year-old developer & student from Finland** who loves turning ideas
 - 🏢 **Storage Rental Platform** – Next.js + Stripe + interactive SVG floor-plan  
 - 🔒 **Smart Lock Landing Page** – clean, modern product landing  
 - 🧠 **YOLO Projects** – real-time object detection on Raspberry Pi  
-- 🎮 **Minecraft Packs** – CIT textures + Python automation scripts  
+- 🎮 **Gaming Packs** – CIT textures + Python automation scripts  
 
 ---
 
