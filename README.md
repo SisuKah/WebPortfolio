@@ -22,7 +22,7 @@ I’m a **20-year-old developer & student from Finland** who loves turning ideas
 **Frontend:** Next.js · React · TypeScript · Tailwind CSS  
 **Backend & Tools:** Firebase · Firestore · Stripe API  
 **AI/Automation:** Python · YOLO · Selenium · Raspberry Pi  
-**Creative:** GIMP · Canva · Minecraft modding  
+**Creative:** GIMP · Canva 
 
 ---
 
