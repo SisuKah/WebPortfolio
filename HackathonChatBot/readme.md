@@ -1,0 +1,1 @@
+At the Junction Hackathon, we built a privacy-aware ChatBot in just 48 hours. The system was designed to process patient data while enforcing strict filtering rules to ensure compliance and data protection.
