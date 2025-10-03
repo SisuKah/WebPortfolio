@@ -9,7 +9,8 @@ I’m a **20-year-old developer & student from Finland** who loves turning ideas
 - 🎓 First-year ICT student at **University of Oulu**  
 - 💻 Earned **€2.5k** from websites I’ve built  
 - 🎮 My gaming application has **1,000+ downloads**  
-- 🎤 Hit **70k+ views** on gaming clips  
+- 🎤 Hit **70k+ views** on gaming clips
+- 📚 Read 350+ [**books**](https://mybooks-rho-olive.vercel.app/)
 - 🌍 Been to **VivaTech, Slush, and TechCrunch Disrupt**  
 - 🚀 Joined **2 Startup Weekends** & **CalHacks Hackathon (San Francisco)**  
 - 🗣️ English at **C1 level**  
