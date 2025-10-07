@@ -4,4 +4,4 @@ I built Python scripts to automate a Minecraft resource pack, generating **4000+
 
 
 
-The project unexpectedly reached **1500+ players** downloads. Even though it received harsh feedback in the community, it taught me to see the real value of what I create, handle criticism constructively, and stay focused on providing real value.
+The project unexpectedly reached **1500+ players** downloads. Even though it received harsh feedback in the community, it taught me to see the real value of what I create, handle criticism constructively, and stay focused on providing value to other people.
