@@ -1,5 +1,7 @@
 # 👋 Hey, I’m Sisu  
 
+## Click the images in the repository to see my projects
+
 I’m a **20-year-old developer & student from Finland** who loves turning ideas into products, experimenting with AI, and building projects that actually get used.  
 
 ---
