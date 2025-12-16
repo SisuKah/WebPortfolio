@@ -7,8 +7,7 @@ I’m a **20-year-old developer & student from Finland** who loves turning ideas
 ---
 
 ## 🌟 About Me  
-
-- 💻 Earned **€2.5k** from websites I’ve built  
+ 
 - 🎮 My gaming application has **1,500+ downloads**  
 - 🎤 Hit **70k+ views** on gaming clips
 - 📚 Read 350+ [**books**](https://mybooks-rho-olive.vercel.app/)
