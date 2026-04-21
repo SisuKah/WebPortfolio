@@ -8,7 +8,7 @@ I’m a **20-year-old developer & student from Finland** who loves turning ideas
 
 ## 🌟 About Me  
  
-- 🎮 My gaming application has **6,000+ downloads**  
+- 🎮 My gaming application has **10,000+ downloads**  
 - 🎤 Hit **70k+ views** on gaming clips
 - 📚 Read 350+ [**books**](https://mybooks-rho-olive.vercel.app/)
 - 🌍 Been to **VivaTech, Slush, and TechCrunch Disrupt**  
