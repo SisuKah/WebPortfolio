@@ -1,7 +1,33 @@
-English:
+## 🚗 Car Dealer Website Platform
 
-I developed a website for a car dealer using TypeScript, React, Stripe, and Next.js. The project helped me gain valuable experience in creating car filters, handling user data, and working with databases. I focused on delivering a user-friendly and functional platform for browsing car listings and processing payments through Stripe integration.
+This project is a web platform developed for a car dealer using a modern TypeScript + React + Next.js stack with Stripe integration.
 
-Finnish:
+The goal was to provide a user-friendly and functional experience for browsing listings and handling payments.
 
-Tein nettisivut autokauppiaalle käyttäen TypeScriptiä, Reactia, Stripea ja Next.js:ää. Projekti antoi minulle arvokasta kokemusta esimerkiksi autosuodattimien luomisessa, käyttäjien tietojen käsittelyssä ja tietokannan kanssa työskentelyssä. Tavoitteena oli luoda käyttäjäystävällinen ja toimiva alusta, jossa voi selata autolistoja ja käsitellä maksuja Stripe-integraation avulla.
+---
+
+## ⚙️ Project Scope
+
+Key implementation areas included:
+
+- 🔎 Building car filtering functionality
+- 👤 Handling user data workflows
+- 🗄️ Working with database-backed data
+- 💳 Integrating Stripe for payment processing
+
+---
+
+## 🛠️ Tech Stack
+
+Built using:
+
+- ▲ **Next.js**
+- ⚛️ **React**
+- 🟦 **TypeScript**
+- 💳 **Stripe**
+
+---
+
+## 🎯 Final Result
+
+The project delivered a practical dealership website and provided strong hands-on experience in search/filter UX, data handling, and payment integration in a real business context. 🚀
