@@ -12,7 +12,7 @@ I am a developer and ICT student from Finland who enjoys building practical prod
 
 ### Highlights
 - 🎮 Built a gaming-related product with **10,000+ downloads**
-- 🏆 Participated in hackathons (including **CalHacks, San Francisco**)
+- 🏆 Won 3000$ in a hackathon in **CalHacks, San Francisco**
 - 🌍 Active in startup/tech events (VivaTech, Slush, TechCrunch Disrupt)
 - 📚 Personal growth focus: [book tracking project](https://mybooks-rho-olive.vercel.app/)
 
