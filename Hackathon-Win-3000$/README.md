@@ -1,3 +1,23 @@
-Competed in a hackathon for a company challenge which we won 3000$. We made an ai that processes ad creatives, both images and videos. It extract rich visual, textual, and audio insights that reveal brand intent and power next-generation recommendation engines.
+## 🏆 Hackathon Project – €3000 Winning Solution
 
-We didn't end up going with the first version because we pivoted to another way that the app worked. So we made a completely new UI.
+This project was developed during a hackathon company challenge where our team won **€3000**.
+
+We built an AI solution for analyzing ad creatives across both images and videos, extracting visual, textual, and audio insights to better understand brand intent and support next-generation recommendation use cases.
+
+---
+
+## ⚙️ Project Evolution
+
+During development:
+
+- 🧪 We created an initial first version of the app
+- 🔄 We then pivoted to a new product direction
+- 🎨 We rebuilt the UI to match the updated approach
+
+This rapid iteration reflected the fast decision-making needed in hackathon environments.
+
+---
+
+## 🎯 Final Result
+
+The final outcome was not just a concept, but a validated and prize-winning implementation shaped through quick experimentation, clear pivoting, and full UI rework under time pressure. 🚀

@@ -1,10 +1,37 @@
-Bookshelf web app that automatically **scrapes book data from Goodreads**, letting me display and track all the books I’ve read.
+## 📚 E-BookShelf – Automated Goodreads Library
 
-It also **automatically sorts books by genre**. A custom scraping script fetches book covers, titles, genres, and metadata directly from Goodreads — keeping the library always up to date.
+This project is a personal **bookshelf web application** that automatically pulls book information from Goodreads, making it easy to present and track books I have read. 🚀
 
-### 🛠 Tech Stack
-- **Next.js** (React + TypeScript) for the frontend and server-side rendering  
-- **React** for building dynamic, interactive UI components  
-- **Tailwind CSS** for styling and responsive design  
-- **Cheerio** for HTML parsing and scraping Goodreads data  
-- **Vercel** for hosting and deployment
+Instead of manually adding every book, I built a scraping flow that keeps the library content up to date.
+
+---
+
+## ⚙️ Core Features
+
+The application includes:
+
+- 📖 Automatic Goodreads data scraping
+- 🏷️ Automatic genre-based sorting
+- 🖼️ Book cover and metadata collection
+- 🔄 Continuously refreshable library content
+
+The scraper collects important data such as titles, covers, genres, and additional metadata directly from Goodreads.
+
+---
+
+## 🛠️ Tech Stack
+
+Built using:
+
+- ▲ **Next.js**
+- ⚛️ **React**
+- 🟦 **TypeScript**
+- 🎨 **Tailwind CSS**
+- 🧩 **Cheerio** *(HTML parsing and scraping)*
+- ▲ **Vercel** *(hosting and deployment)*
+
+---
+
+## 🎯 Final Result
+
+This became a practical content automation project that combines web scraping and frontend development into a clean reading tracker experience. It reduces manual work and keeps the shelf organized automatically. ✅
