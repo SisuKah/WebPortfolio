@@ -580,15 +580,35 @@ p {
   position: relative;
 }
 
+.contact__thinking {
+  position: absolute;
+  bottom: 0;
+  right: 2rem;
+  height: 85%;
+  width: auto;
+  pointer-events: none;
+  user-select: none;
+  opacity: 0.92;
+  filter: drop-shadow(0 20px 40px rgba(45, 27, 16, 0.4));
+}
+
 .contact__inner {
-  text-align: center;
+  position: relative;
+  overflow: hidden;
+  text-align: left;
   background:
-    radial-gradient(circle at 50% 0%, rgba(255, 216, 154, 0.2), transparent 45%),
+    radial-gradient(circle at 30% 0%, rgba(255, 216, 154, 0.2), transparent 55%),
     rgba(255, 240, 208, 0.06);
   border: 1px solid var(--border-soft);
   border-radius: var(--radius-xl);
-  padding: clamp(3.5rem, 8vw, 6rem) 2rem;
+  padding: clamp(3.5rem, 8vw, 6rem) clamp(2rem, 5vw, 4rem);
   box-shadow: 0 24px 80px rgba(45, 27, 16, 0.24);
+}
+
+.contact__inner > :not(.contact__thinking) {
+  position: relative;
+  z-index: 1;
+  max-width: 56%;
 }
 
 .contact__inner h2 {
@@ -602,7 +622,7 @@ p {
 
 .contact__links {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   gap: 1rem;
   flex-wrap: wrap;
 }
@@ -691,7 +711,7 @@ p {
   border: 1px solid var(--border-soft);
   color: var(--cream);
   cursor: pointer;
-  transition: background 200ms ease, transform 200ms ease;
+  transition: background 200ms ease, border-color 200ms ease, color 200ms ease;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -702,7 +722,6 @@ p {
 
 .lightbox button:hover {
   background: rgba(255, 240, 208, 0.18);
-  transform: scale(1.05);
 }
 
 .lightbox__close {
@@ -718,12 +737,12 @@ p {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  width: 5rem;
-  height: 5rem;
-  font-size: 2.4rem;
-  background: rgba(45, 27, 16, 0.72);
-  border: 1px solid rgba(255, 216, 154, 0.45);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5), 0 0 0 3px rgba(255, 216, 154, 0.08);
+  width: 7rem;
+  height: 7rem;
+  font-size: 3rem;
+  background: rgba(45, 27, 16, 0.85);
+  border: 2px solid rgba(255, 216, 154, 0.6);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   color: var(--gold-glow);
@@ -731,15 +750,13 @@ p {
 }
 
 .lightbox__nav:hover {
-  transform: translateY(-50%) scale(1.08);
-  background: rgba(45, 27, 16, 0.9);
-  border-color: rgba(255, 216, 154, 0.75);
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6), 0 0 0 3px rgba(255, 216, 154, 0.18);
+  background: rgba(45, 27, 16, 0.95);
+  border-color: rgba(255, 216, 154, 0.95);
   color: var(--cream);
 }
 
-.lightbox__nav--prev { left: 1.25rem; }
-.lightbox__nav--next { right: 1.25rem; }
+.lightbox__nav--prev { left: 1rem; }
+.lightbox__nav--next { right: 1rem; }
 
 .lightbox__stage {
   position: relative;
@@ -987,10 +1004,27 @@ p {
   }
 
   .contact__inner {
-    padding: 2.5rem 1.25rem;
+    padding: 2.5rem 1.25rem 0;
+    text-align: center;
+  }
+
+  .contact__inner > :not(.contact__thinking) {
+    max-width: 100%;
+  }
+
+  .contact__thinking {
+    position: relative;
+    display: block;
+    height: auto;
+    width: 60%;
+    margin: 1.5rem auto 0;
+    right: auto;
+    bottom: auto;
+    opacity: 1;
   }
 
   .contact__links {
+    justify-content: center;
     flex-direction: column;
     gap: 0.75rem;
   }
@@ -1010,13 +1044,13 @@ p {
   }
 
   .lightbox__nav {
-    width: 3.75rem;
-    height: 3.75rem;
-    font-size: 1.8rem;
+    width: 5rem;
+    height: 5rem;
+    font-size: 2.2rem;
   }
 
-  .lightbox__nav--prev { left: 0.4rem; }
-  .lightbox__nav--next { right: 0.4rem; }
+  .lightbox__nav--prev { left: 0.25rem; }
+  .lightbox__nav--next { right: 0.25rem; }
 
   .lightbox__stage {
     width: 100vw;
