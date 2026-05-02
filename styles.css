@@ -277,6 +277,44 @@ p {
   line-height: 1.2;
 }
 
+.about__portrait {
+  margin: 0 0 2rem;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: 1px solid var(--border-soft);
+  box-shadow: var(--shadow-soft), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  position: relative;
+  max-width: 420px;
+}
+
+.about__portrait::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(180deg, transparent 55%, rgba(45, 27, 16, 0.35) 100%);
+}
+
+.about__portrait img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  display: block;
+  filter: saturate(1.02) contrast(1.02);
+  transition: transform 700ms var(--ease-soft);
+}
+
+.about__portrait:hover img {
+  transform: scale(1.03);
+}
+
+@media (max-width: 900px) {
+  .about__portrait {
+    max-width: none;
+  }
+}
+
 .about__body {
   background: rgba(255, 240, 208, 0.09);
   border: 1px solid var(--border-soft);
