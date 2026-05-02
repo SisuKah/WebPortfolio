@@ -42,15 +42,6 @@
       </div>
     </div>
 
-    <header class="nav">
-      <a href="#top" class="nav__brand">SK</a>
-      <nav class="nav__links">
-        <a href="#about">About</a>
-        <a href="#work">Work</a>
-        <a href="#contact">Contact</a>
-      </nav>
-    </header>
-
     <section id="top" class="hero">
       <video
         id="heroVideo"
@@ -60,6 +51,10 @@
       >
         <source src="PortfolioHero.mp4" type="video/mp4" />
       </video>
+      <a href="#about" class="hero__scroll" id="heroScroll" aria-label="Scroll down">
+        <span class="hero__scroll-label">Scroll</span>
+        <span class="hero__scroll-arrow" aria-hidden="true"></span>
+      </a>
     </section>
 
     <main>
@@ -152,6 +147,10 @@
         <img class="lightbox__img" alt="" draggable="false" />
       </div>
       <button class="lightbox__nav lightbox__nav--next" aria-label="Next">›</button>
+      <div class="lightbox__hint" id="lightboxHint" aria-hidden="true">
+        <span class="lightbox__hint-icon" aria-hidden="true"></span>
+        Drag to pan around the image
+      </div>
       <div class="lightbox__zoom" aria-label="Zoom controls">
         <button class="lightbox__zoom-btn" data-zoom="out" aria-label="Zoom out">−</button>
         <button class="lightbox__zoom-btn" data-zoom="reset" aria-label="Reset zoom">⟳</button>

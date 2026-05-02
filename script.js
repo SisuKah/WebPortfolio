@@ -3,6 +3,7 @@
   const video = document.getElementById("heroVideo");
   const gate = document.getElementById("enterGate");
   const enterBtn = document.getElementById("enterGateBtn");
+  const scrollCue = document.getElementById("heroScroll");
   if (!video) return;
 
   video.addEventListener("ended", () => {
@@ -13,6 +14,7 @@
     }
     video.pause();
     video.removeAttribute("loop");
+    if (scrollCue) scrollCue.classList.add("is-visible");
   });
 
   // Lock scrolling while the gate is up.
@@ -361,7 +363,24 @@ const lb = document.getElementById("lightbox");
 const lbImg = lb.querySelector(".lightbox__img");
 const lbStage = lb.querySelector(".lightbox__stage");
 const lbCaption = lb.querySelector(".lightbox__caption");
+const lbHint = document.getElementById("lightboxHint");
 let lbState = { project: null, idx: 0 };
+let lbHintTimer = null;
+
+const showPanHint = () => {
+  if (!lbHint) return;
+  lbHint.classList.add("is-visible");
+  clearTimeout(lbHintTimer);
+  lbHintTimer = setTimeout(() => {
+    lbHint.classList.remove("is-visible");
+  }, 2200);
+};
+
+const hidePanHint = () => {
+  if (!lbHint) return;
+  clearTimeout(lbHintTimer);
+  lbHint.classList.remove("is-visible");
+};
 
 // ---------- ZOOM & PAN ----------
 const ZOOM_MIN = 1;
@@ -369,8 +388,12 @@ const ZOOM_MAX = 5;
 const zoom = { scale: 1, tx: 0, ty: 0 };
 
 const applyZoom = () => {
+  const wasZoomed = lbStage.classList.contains("is-zoomed");
+  const isZoomed = zoom.scale > 1.001;
   lbImg.style.transform = `translate(${zoom.tx}px, ${zoom.ty}px) scale(${zoom.scale})`;
-  lbStage.classList.toggle("is-zoomed", zoom.scale > 1.001);
+  lbStage.classList.toggle("is-zoomed", isZoomed);
+  if (isZoomed && !wasZoomed) showPanHint();
+  if (!isZoomed && wasZoomed) hidePanHint();
 };
 
 const clampPan = () => {
@@ -446,6 +469,7 @@ const closeLightbox = () => {
   zoom.scale = 1;
   zoom.tx = 0;
   zoom.ty = 0;
+  hidePanHint();
 };
 
 const stepLightbox = (delta) => {
