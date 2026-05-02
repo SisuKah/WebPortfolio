@@ -359,8 +359,73 @@ document.querySelectorAll(".project__more").forEach((btn) => {
 // ---------- LIGHTBOX ----------
 const lb = document.getElementById("lightbox");
 const lbImg = lb.querySelector(".lightbox__img");
+const lbStage = lb.querySelector(".lightbox__stage");
 const lbCaption = lb.querySelector(".lightbox__caption");
 let lbState = { project: null, idx: 0 };
+
+// ---------- ZOOM & PAN ----------
+const ZOOM_MIN = 1;
+const ZOOM_MAX = 5;
+const zoom = { scale: 1, tx: 0, ty: 0 };
+
+const applyZoom = () => {
+  lbImg.style.transform = `translate(${zoom.tx}px, ${zoom.ty}px) scale(${zoom.scale})`;
+  lbStage.classList.toggle("is-zoomed", zoom.scale > 1.001);
+};
+
+const clampPan = () => {
+  const sw = lbStage.clientWidth;
+  const sh = lbStage.clientHeight;
+  const iw = lbImg.clientWidth * zoom.scale;
+  const ih = lbImg.clientHeight * zoom.scale;
+  // Image is centered when scale = 1; transform-origin is 0,0 with translate
+  // Effective offset bounds: keep image overlapping stage.
+  const baseX = (sw - lbImg.clientWidth * zoom.scale) / 2;
+  const baseY = (sh - lbImg.clientHeight * zoom.scale) / 2;
+  const minX = Math.min(baseX, sw - iw - (sw - lbImg.clientWidth) / 2);
+  const maxX = Math.max(baseX, -(sw - lbImg.clientWidth) / 2);
+  const minY = Math.min(baseY, sh - ih - (sh - lbImg.clientHeight) / 2);
+  const maxY = Math.max(baseY, -(sh - lbImg.clientHeight) / 2);
+  if (iw <= sw) {
+    zoom.tx = baseX;
+  } else {
+    zoom.tx = Math.min(maxX, Math.max(minX, zoom.tx));
+  }
+  if (ih <= sh) {
+    zoom.ty = baseY;
+  } else {
+    zoom.ty = Math.min(maxY, Math.max(minY, zoom.ty));
+  }
+};
+
+const resetZoom = () => {
+  zoom.scale = 1;
+  // Compute centered translation for default state
+  if (lbImg.clientWidth && lbStage.clientWidth) {
+    zoom.tx = (lbStage.clientWidth - lbImg.clientWidth) / 2;
+    zoom.ty = (lbStage.clientHeight - lbImg.clientHeight) / 2;
+  } else {
+    zoom.tx = 0;
+    zoom.ty = 0;
+  }
+  applyZoom();
+};
+
+const zoomAt = (clientX, clientY, newScale) => {
+  newScale = Math.min(ZOOM_MAX, Math.max(ZOOM_MIN, newScale));
+  const rect = lbStage.getBoundingClientRect();
+  // Pointer position relative to stage
+  const px = clientX - rect.left;
+  const py = clientY - rect.top;
+  // Image-space coordinate at the pointer (before scaling)
+  const ix = (px - zoom.tx) / zoom.scale;
+  const iy = (py - zoom.ty) / zoom.scale;
+  zoom.scale = newScale;
+  zoom.tx = px - ix * zoom.scale;
+  zoom.ty = py - iy * zoom.scale;
+  clampPan();
+  applyZoom();
+};
 
 const openLightbox = (projectIdx, imageIdx) => {
   const p = projects[projectIdx];
@@ -372,6 +437,13 @@ const openLightbox = (projectIdx, imageIdx) => {
   lb.classList.add("is-open");
   lb.setAttribute("aria-hidden", "false");
   document.body.style.overflow = "hidden";
+  // Reset zoom once image dims are known (handle cached images too)
+  const onReady = () => requestAnimationFrame(resetZoom);
+  if (lbImg.complete && lbImg.naturalWidth) {
+    onReady();
+  } else {
+    lbImg.onload = onReady;
+  }
 };
 
 const closeLightbox = () => {
@@ -379,6 +451,9 @@ const closeLightbox = () => {
   lb.setAttribute("aria-hidden", "true");
   lbImg.src = "";
   document.body.style.overflow = "";
+  zoom.scale = 1;
+  zoom.tx = 0;
+  zoom.ty = 0;
 };
 
 const stepLightbox = (delta) => {
@@ -386,6 +461,10 @@ const stepLightbox = (delta) => {
   if (!p) return;
   const len = p.gallery.length;
   lbState.idx = (lbState.idx + delta + len) % len;
+  zoom.scale = 1;
+  zoom.tx = 0;
+  zoom.ty = 0;
+  applyZoom();
   openLightbox(lbState.project, lbState.idx);
 };
 
@@ -425,6 +504,156 @@ document.addEventListener("keydown", (e) => {
   if (e.key === "Escape") closeLightbox();
   if (e.key === "ArrowRight") stepLightbox(1);
   if (e.key === "ArrowLeft") stepLightbox(-1);
+  if (e.key === "+" || e.key === "=") zoomAt(
+    lbStage.getBoundingClientRect().left + lbStage.clientWidth / 2,
+    lbStage.getBoundingClientRect().top + lbStage.clientHeight / 2,
+    zoom.scale * 1.4
+  );
+  if (e.key === "-" || e.key === "_") zoomAt(
+    lbStage.getBoundingClientRect().left + lbStage.clientWidth / 2,
+    lbStage.getBoundingClientRect().top + lbStage.clientHeight / 2,
+    zoom.scale / 1.4
+  );
+  if (e.key === "0") resetZoom();
+});
+
+// ---------- LIGHTBOX ZOOM / PAN INTERACTIONS ----------
+
+// Zoom button controls
+lb.querySelectorAll(".lightbox__zoom-btn").forEach((btn) => {
+  btn.addEventListener("click", (e) => {
+    e.stopPropagation();
+    const action = btn.dataset.zoom;
+    const cx = lbStage.getBoundingClientRect().left + lbStage.clientWidth / 2;
+    const cy = lbStage.getBoundingClientRect().top + lbStage.clientHeight / 2;
+    if (action === "in") zoomAt(cx, cy, zoom.scale * 1.5);
+    else if (action === "out") zoomAt(cx, cy, zoom.scale / 1.5);
+    else resetZoom();
+  });
+});
+
+// Mouse wheel zoom (desktop)
+lbStage.addEventListener(
+  "wheel",
+  (e) => {
+    e.preventDefault();
+    const factor = e.deltaY < 0 ? 1.15 : 1 / 1.15;
+    zoomAt(e.clientX, e.clientY, zoom.scale * factor);
+  },
+  { passive: false }
+);
+
+// Double-click toggle zoom (desktop)
+lbImg.addEventListener("dblclick", (e) => {
+  e.preventDefault();
+  e.stopPropagation();
+  if (zoom.scale > 1.01) {
+    resetZoom();
+  } else {
+    zoomAt(e.clientX, e.clientY, 2.5);
+  }
+});
+
+// Pointer-based pan (mouse + single touch) and pinch zoom (two-finger touch)
+const activePointers = new Map();
+let panStart = null;
+let pinchStart = null;
+
+const pinchDistance = (a, b) => Math.hypot(a.x - b.x, a.y - b.y);
+const pinchMidpoint = (a, b) => ({ x: (a.x + b.x) / 2, y: (a.y + b.y) / 2 });
+
+lbStage.addEventListener("pointerdown", (e) => {
+  if (e.target.closest(".lightbox__zoom-btn")) return;
+  lbStage.setPointerCapture(e.pointerId);
+  activePointers.set(e.pointerId, { x: e.clientX, y: e.clientY });
+
+  if (activePointers.size === 1) {
+    panStart = {
+      x: e.clientX,
+      y: e.clientY,
+      tx: zoom.tx,
+      ty: zoom.ty,
+      moved: false,
+      time: Date.now(),
+    };
+    pinchStart = null;
+  } else if (activePointers.size === 2) {
+    const [a, b] = [...activePointers.values()];
+    pinchStart = {
+      dist: pinchDistance(a, b),
+      mid: pinchMidpoint(a, b),
+      scale: zoom.scale,
+      tx: zoom.tx,
+      ty: zoom.ty,
+    };
+    panStart = null;
+    lbStage.classList.add("is-panning");
+  }
+});
+
+lbStage.addEventListener("pointermove", (e) => {
+  if (!activePointers.has(e.pointerId)) return;
+  activePointers.set(e.pointerId, { x: e.clientX, y: e.clientY });
+
+  if (activePointers.size === 2 && pinchStart) {
+    const [a, b] = [...activePointers.values()];
+    const newDist = pinchDistance(a, b);
+    const newScale = Math.min(
+      ZOOM_MAX,
+      Math.max(ZOOM_MIN, pinchStart.scale * (newDist / pinchStart.dist))
+    );
+    // Anchor zoom to original midpoint in image space
+    const rect = lbStage.getBoundingClientRect();
+    const px = pinchStart.mid.x - rect.left;
+    const py = pinchStart.mid.y - rect.top;
+    const ix = (px - pinchStart.tx) / pinchStart.scale;
+    const iy = (py - pinchStart.ty) / pinchStart.scale;
+    zoom.scale = newScale;
+    zoom.tx = px - ix * zoom.scale;
+    zoom.ty = py - iy * zoom.scale;
+    clampPan();
+    lbImg.style.transition = "none";
+    applyZoom();
+  } else if (activePointers.size === 1 && panStart && zoom.scale > 1.001) {
+    const dx = e.clientX - panStart.x;
+    const dy = e.clientY - panStart.y;
+    if (Math.abs(dx) > 3 || Math.abs(dy) > 3) panStart.moved = true;
+    zoom.tx = panStart.tx + dx;
+    zoom.ty = panStart.ty + dy;
+    clampPan();
+    lbImg.style.transition = "none";
+    lbStage.classList.add("is-panning");
+    applyZoom();
+  } else if (activePointers.size === 1 && panStart) {
+    // Track movement so a tap-vs-drag distinction is possible
+    const dx = e.clientX - panStart.x;
+    const dy = e.clientY - panStart.y;
+    if (Math.abs(dx) > 6 || Math.abs(dy) > 6) panStart.moved = true;
+  }
+});
+
+const endPointer = (e) => {
+  activePointers.delete(e.pointerId);
+  if (activePointers.size < 2) pinchStart = null;
+  if (activePointers.size === 0) {
+    lbStage.classList.remove("is-panning");
+    lbImg.style.transition = "";
+    panStart = null;
+  }
+};
+
+lbStage.addEventListener("pointerup", endPointer);
+lbStage.addEventListener("pointercancel", endPointer);
+lbStage.addEventListener("pointerleave", endPointer);
+
+// Re-center the image whenever the stage is resized while open
+window.addEventListener("resize", () => {
+  if (!lb.classList.contains("is-open")) return;
+  if (zoom.scale <= 1.001) resetZoom();
+  else {
+    clampPan();
+    applyZoom();
+  }
 });
 
 // ---------- REVEAL ON SCROLL ----------

@@ -148,8 +148,15 @@
     >
       <button class="lightbox__close" aria-label="Close">×</button>
       <button class="lightbox__nav lightbox__nav--prev" aria-label="Previous">‹</button>
-      <img class="lightbox__img" alt="" />
+      <div class="lightbox__stage">
+        <img class="lightbox__img" alt="" draggable="false" />
+      </div>
       <button class="lightbox__nav lightbox__nav--next" aria-label="Next">›</button>
+      <div class="lightbox__zoom" aria-label="Zoom controls">
+        <button class="lightbox__zoom-btn" data-zoom="out" aria-label="Zoom out">−</button>
+        <button class="lightbox__zoom-btn" data-zoom="reset" aria-label="Reset zoom">⟳</button>
+        <button class="lightbox__zoom-btn" data-zoom="in" aria-label="Zoom in">+</button>
+      </div>
       <div class="lightbox__caption"></div>
     </div>
 
