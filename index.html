@@ -13,156 +13,16 @@
       property="og:description"
       content="Selected projects: web platforms, AI experiments, hackathon-winning builds."
     />
-    <link rel="preload" as="video" href="PortfolioHero.mp4" type="video/mp4" />
-    <link
-      rel="preconnect"
-      href="https://fonts.googleapis.com"
-      crossorigin
-    />
-    <link
-      rel="preconnect"
-      href="https://fonts.gstatic.com"
-      crossorigin
-    />
+    <link rel="preload" as="video" href="/PortfolioHero.mp4" type="video/mp4" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,500;9..144,700&family=Inter:wght@300;400;500;600&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <div class="enter-gate" id="enterGate" role="dialog" aria-modal="true">
-      <div class="enter-gate__inner">
-        <p class="enter-gate__eyebrow">Sisu Kahilakoski</p>
-        <h2 class="enter-gate__title">Portfolio</h2>
-        <p class="enter-gate__sub">Best experienced with sound on.</p>
-        <button type="button" class="enter-gate__btn" id="enterGateBtn">
-          Enter
-        </button>
-      </div>
-    </div>
-
-    <section id="top" class="hero">
-      <video
-        id="heroVideo"
-        class="hero__video"
-        playsinline
-        preload="auto"
-      >
-        <source src="PortfolioHero.mp4" type="video/mp4" />
-      </video>
-      <a href="#about" class="hero__scroll" id="heroScroll" aria-label="Scroll down">
-        <span class="hero__scroll-label">Scroll</span>
-        <span class="hero__scroll-arrow" aria-hidden="true"></span>
-      </a>
-    </section>
-
-    <main>
-      <section id="about" class="about">
-        <div class="container about__grid">
-          <div class="about__lead">
-            <figure class="about__portrait">
-              <img src="public/face.jpg" alt="Sisu Kahilakoski pitching on stage" loading="lazy" />
-            </figure>
-            <p class="eyebrow">About</p>
-            <h2>
-              I design and ship products end-to-end &mdash; from the first
-              landing page to live Stripe checkouts.
-            </h2>
-          </div>
-          <div class="about__body">
-            <p>
-              I am a developer and ICT student from Finland who enjoys
-              turning ideas into working products with modern web
-              technologies and AI-powered workflows. My work spans
-              full-stack web apps, automation pipelines, and
-              hackathon-tempo prototypes.
-            </p>
-            <ul class="about__highlights">
-              <li>
-                <span>10,000+</span>downloads on a gaming-related product
-              </li>
-              <li>
-                <span>$3,000</span>hackathon win at CalHacks, San Francisco
-              </li>
-              <li>
-                <span>3</span>conferences attended &mdash; VivaTech, Slush,
-                TechCrunch Disrupt
-              </li>
-            </ul>
-            <div class="about__stack">
-              <span>Next.js</span><span>React</span><span>TypeScript</span
-              ><span>Tailwind</span><span>Firebase</span><span>Supabase</span
-              ><span>Stripe</span><span>Python</span><span>YOLO</span>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section id="work" class="work">
-        <div class="container">
-          <div class="section-head">
-            <p class="eyebrow">Selected Work</p>
-            <h2>Projects, prototypes &amp; platforms.</h2>
-          </div>
-
-          <div class="projects" id="projects"></div>
-        </div>
-      </section>
-
-      <section id="contact" class="contact">
-        <div class="container contact__inner">
-          <img src="public/thinking.png" class="contact__thinking" alt="" aria-hidden="true" />
-          <p class="eyebrow">Contact</p>
-          <h2>Let's build something with sisu.</h2>
-          <p class="contact__text">
-            Open to freelance, internship, and collaboration opportunities.
-          </p>
-          <div class="contact__links">
-            <a href="mailto:sisu.kahilakoski@gmail.com">sisu.kahilakoski@gmail.com</a>
-            <a
-              href="https://www.linkedin.com/in/sisu-kahilakoski-0226a1369/"
-              target="_blank"
-              rel="noopener"
-              >LinkedIn</a
-            >
-          </div>
-        </div>
-      </section>
-
-      <footer class="footer">
-        <div class="container footer__inner">
-          <span>© 2026 Sisu Kahilakoski</span>
-          <span>Built with sisu.</span>
-        </div>
-      </footer>
-    </main>
-
-    <div
-      class="lightbox"
-      id="lightbox"
-      role="dialog"
-      aria-modal="true"
-      aria-hidden="true"
-    >
-      <button class="lightbox__close" aria-label="Close">×</button>
-      <button class="lightbox__nav lightbox__nav--prev" aria-label="Previous">‹</button>
-      <div class="lightbox__stage">
-        <img class="lightbox__img" alt="" draggable="false" />
-      </div>
-      <button class="lightbox__nav lightbox__nav--next" aria-label="Next">›</button>
-      <div class="lightbox__hint" id="lightboxHint" aria-hidden="true">
-        <span class="lightbox__hint-icon" aria-hidden="true"></span>
-        <span class="lightbox__hint-text"></span>
-      </div>
-      <div class="lightbox__zoom" aria-label="Zoom controls">
-        <button class="lightbox__zoom-btn" data-zoom="out" aria-label="Zoom out">−</button>
-        <button class="lightbox__zoom-btn" data-zoom="reset" aria-label="Reset zoom">⟳</button>
-        <button class="lightbox__zoom-btn" data-zoom="in" aria-label="Zoom in">+</button>
-      </div>
-      <div class="lightbox__caption"></div>
-    </div>
-
-    <script src="script.js"></script>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>
