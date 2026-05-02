@@ -378,23 +378,15 @@ const clampPan = () => {
   const sh = lbStage.clientHeight;
   const iw = lbImg.clientWidth * zoom.scale;
   const ih = lbImg.clientHeight * zoom.scale;
-  // Image is centered when scale = 1; transform-origin is 0,0 with translate
-  // Effective offset bounds: keep image overlapping stage.
-  const baseX = (sw - lbImg.clientWidth * zoom.scale) / 2;
-  const baseY = (sh - lbImg.clientHeight * zoom.scale) / 2;
-  const minX = Math.min(baseX, sw - iw - (sw - lbImg.clientWidth) / 2);
-  const maxX = Math.max(baseX, -(sw - lbImg.clientWidth) / 2);
-  const minY = Math.min(baseY, sh - ih - (sh - lbImg.clientHeight) / 2);
-  const maxY = Math.max(baseY, -(sh - lbImg.clientHeight) / 2);
   if (iw <= sw) {
-    zoom.tx = baseX;
+    zoom.tx = (sw - iw) / 2;
   } else {
-    zoom.tx = Math.min(maxX, Math.max(minX, zoom.tx));
+    zoom.tx = Math.min(0, Math.max(sw - iw, zoom.tx));
   }
   if (ih <= sh) {
-    zoom.ty = baseY;
+    zoom.ty = (sh - ih) / 2;
   } else {
-    zoom.ty = Math.min(maxY, Math.max(minY, zoom.ty));
+    zoom.ty = Math.min(0, Math.max(sh - ih, zoom.ty));
   }
 };
 
