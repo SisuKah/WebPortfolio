@@ -45,13 +45,26 @@
         id="heroVideo"
         class="hero__video"
         playsinline
-        muted
         autoplay
         preload="auto"
-        poster=""
       >
         <source src="PortfolioHero.mp4" type="video/mp4" />
       </video>
+      <button
+        type="button"
+        id="heroUnmute"
+        class="hero__unmute"
+        hidden
+        aria-label="Unmute video"
+      >
+        <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+          <path
+            fill="currentColor"
+            d="M3 9v6h4l5 5V4L7 9H3zm13.5 3a4.5 4.5 0 0 0-2.5-4.03v8.05A4.5 4.5 0 0 0 16.5 12zM14 3.23v2.06a7 7 0 0 1 0 13.42v2.06a9 9 0 0 0 0-17.54z"
+          />
+        </svg>
+        <span>Tap for sound</span>
+      </button>
     </section>
 
     <main>

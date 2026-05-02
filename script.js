@@ -1,6 +1,7 @@
 // ---------- HERO VIDEO: play once, freeze on last frame ----------
 (() => {
   const video = document.getElementById("heroVideo");
+  const unmuteBtn = document.getElementById("heroUnmute");
   if (!video) return;
 
   video.addEventListener("ended", () => {
@@ -13,9 +14,41 @@
     video.removeAttribute("loop");
   });
 
-  const playPromise = video.play();
-  if (playPromise && typeof playPromise.catch === "function") {
-    playPromise.catch(() => {});
+  const tryUnmutedPlay = async () => {
+    video.muted = false;
+    video.volume = 1;
+    try {
+      await video.play();
+      if (unmuteBtn) unmuteBtn.hidden = true;
+      return true;
+    } catch (_) {
+      return false;
+    }
+  };
+
+  const startMutedFallback = async () => {
+    video.muted = true;
+    try {
+      await video.play();
+    } catch (_) {}
+    if (unmuteBtn) unmuteBtn.hidden = false;
+  };
+
+  (async () => {
+    if (!(await tryUnmutedPlay())) {
+      await startMutedFallback();
+    }
+  })();
+
+  if (unmuteBtn) {
+    unmuteBtn.addEventListener("click", async () => {
+      video.muted = false;
+      video.volume = 1;
+      try {
+        await video.play();
+      } catch (_) {}
+      unmuteBtn.hidden = true;
+    });
   }
 })();
 
