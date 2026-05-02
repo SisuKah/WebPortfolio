@@ -1,18 +1,9 @@
 // ---------- HERO VIDEO: play once, freeze on last frame ----------
 (() => {
   const video = document.getElementById("heroVideo");
-  const overlay = document.getElementById("heroOverlay");
   if (!video) return;
 
-  const showOverlay = () => overlay && overlay.classList.add("is-visible");
-
-  // Reveal headline once the video is meaningfully in.
-  video.addEventListener("loadeddata", () => {
-    setTimeout(showOverlay, 400);
-  });
-
   video.addEventListener("ended", () => {
-    // Pause precisely at the last decoded frame.
     if (Number.isFinite(video.duration)) {
       try {
         video.currentTime = Math.max(0, video.duration - 0.04);
@@ -20,17 +11,12 @@
     }
     video.pause();
     video.removeAttribute("loop");
-    showOverlay();
   });
 
-  // Autoplay can be blocked; if so, still show the overlay so the page is usable.
   const playPromise = video.play();
   if (playPromise && typeof playPromise.catch === "function") {
-    playPromise.catch(() => showOverlay());
+    playPromise.catch(() => {});
   }
-
-  // Fallback: if metadata never resolves, show overlay after 2.5s.
-  setTimeout(showOverlay, 2500);
 })();
 
 // ---------- PROJECTS DATA ----------
