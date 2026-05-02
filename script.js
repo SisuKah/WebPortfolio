@@ -26,12 +26,41 @@
     }
   };
 
+  const unmuteOnFirstInteraction = () => {
+    const events = [
+      "pointerdown",
+      "click",
+      "keydown",
+      "touchstart",
+      "wheel",
+      "scroll",
+    ];
+    const handler = async () => {
+      events.forEach((evt) =>
+        window.removeEventListener(evt, handler, true)
+      );
+      video.muted = false;
+      video.volume = 1;
+      try {
+        await video.play();
+      } catch (_) {}
+      if (unmuteBtn) unmuteBtn.hidden = true;
+    };
+    events.forEach((evt) =>
+      window.addEventListener(evt, handler, {
+        capture: true,
+        passive: true,
+      })
+    );
+  };
+
   const startMutedFallback = async () => {
     video.muted = true;
     try {
       await video.play();
     } catch (_) {}
     if (unmuteBtn) unmuteBtn.hidden = false;
+    unmuteOnFirstInteraction();
   };
 
   (async () => {
