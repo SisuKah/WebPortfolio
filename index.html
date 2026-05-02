@@ -31,6 +31,17 @@
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
+    <div class="enter-gate" id="enterGate" role="dialog" aria-modal="true">
+      <div class="enter-gate__inner">
+        <p class="enter-gate__eyebrow">Sisu Kahilakoski</p>
+        <h2 class="enter-gate__title">Portfolio</h2>
+        <p class="enter-gate__sub">Best experienced with sound on.</p>
+        <button type="button" class="enter-gate__btn" id="enterGateBtn">
+          Enter
+        </button>
+      </div>
+    </div>
+
     <header class="nav">
       <a href="#top" class="nav__brand">SK</a>
       <nav class="nav__links">
@@ -45,26 +56,10 @@
         id="heroVideo"
         class="hero__video"
         playsinline
-        autoplay
         preload="auto"
       >
         <source src="PortfolioHero.mp4" type="video/mp4" />
       </video>
-      <button
-        type="button"
-        id="heroUnmute"
-        class="hero__unmute"
-        hidden
-        aria-label="Unmute video"
-      >
-        <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
-          <path
-            fill="currentColor"
-            d="M3 9v6h4l5 5V4L7 9H3zm13.5 3a4.5 4.5 0 0 0-2.5-4.03v8.05A4.5 4.5 0 0 0 16.5 12zM14 3.23v2.06a7 7 0 0 1 0 13.42v2.06a9 9 0 0 0 0-17.54z"
-          />
-        </svg>
-        <span>Tap for sound</span>
-      </button>
     </section>
 
     <main>
