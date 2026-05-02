@@ -1,7 +1,7 @@
 export const projects = [
   {
     title: "Hackathon Win — CalHacks ($3000)",
-    folder: "Hackathon-Win-3000$",
+    folder: "Hackathon-Win-3000",
     cover: "Cal-Hacks-App-V2.png",
     gallery: ["Cal-Hacks-App-V2.png", "Cal-Hacks-App-V1.jpeg"],
     badge: "Award · $3000",
