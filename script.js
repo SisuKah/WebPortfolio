@@ -1,3 +1,7 @@
+// Always start at the top on reload
+if ("scrollRestoration" in history) history.scrollRestoration = "manual";
+window.scrollTo(0, 0);
+
 // ---------- HERO VIDEO: play once, freeze on last frame ----------
 (() => {
   const video = document.getElementById("heroVideo");
@@ -366,14 +370,16 @@ const lbCaption = lb.querySelector(".lightbox__caption");
 const lbHint = document.getElementById("lightboxHint");
 let lbState = { project: null, idx: 0 };
 let lbHintTimer = null;
+const lbHintText = lbHint ? lbHint.querySelector(".lightbox__hint-text") : null;
 
-const showPanHint = () => {
-  if (!lbHint) return;
-  lbHint.classList.add("is-visible");
+const showHint = (mode) => {
+  if (!lbHint || !lbHintText) return;
   clearTimeout(lbHintTimer);
+  lbHintText.textContent = mode === "scroll" ? "Scroll to zoom" : "Drag to pan";
+  lbHint.classList.add("is-visible");
   lbHintTimer = setTimeout(() => {
     lbHint.classList.remove("is-visible");
-  }, 2200);
+  }, mode === "scroll" ? 3000 : 2200);
 };
 
 const hidePanHint = () => {
@@ -392,7 +398,7 @@ const applyZoom = () => {
   const isZoomed = zoom.scale > 1.001;
   lbImg.style.transform = `translate(${zoom.tx}px, ${zoom.ty}px) scale(${zoom.scale})`;
   lbStage.classList.toggle("is-zoomed", isZoomed);
-  if (isZoomed && !wasZoomed) showPanHint();
+  if (isZoomed && !wasZoomed) showHint("pan");
   if (!isZoomed && wasZoomed) hidePanHint();
 };
 
@@ -452,6 +458,7 @@ const openLightbox = (projectIdx, imageIdx) => {
   lb.classList.add("is-open");
   lb.setAttribute("aria-hidden", "false");
   document.body.style.overflow = "hidden";
+  showHint("scroll");
   // Reset zoom once image dims are known (handle cached images too)
   const onReady = () => requestAnimationFrame(resetZoom);
   if (lbImg.complete && lbImg.naturalWidth) {
