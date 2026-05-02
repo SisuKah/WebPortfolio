@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Sisu Kahilakoski — Portfolio</title>
+    <meta
+      name="description"
+      content="Portfolio of Sisu Kahilakoski — developer & ICT student from Finland. Web apps, hackathon wins, AI experiments, and product builds."
+    />
+    <meta property="og:title" content="Sisu Kahilakoski — Portfolio" />
+    <meta
+      property="og:description"
+      content="Selected projects: web platforms, AI experiments, hackathon-winning builds."
+    />
+    <link rel="preload" as="video" href="PortfolioHero.mp4" type="video/mp4" />
+    <link
+      rel="preconnect"
+      href="https://fonts.googleapis.com"
+      crossorigin
+    />
+    <link
+      rel="preconnect"
+      href="https://fonts.gstatic.com"
+      crossorigin
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,500;9..144,700&family=Inter:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="nav">
+      <a href="#top" class="nav__brand">SK</a>
+      <nav class="nav__links">
+        <a href="#about">About</a>
+        <a href="#work">Work</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </header>
+
+    <section id="top" class="hero">
+      <video
+        id="heroVideo"
+        class="hero__video"
+        playsinline
+        muted
+        autoplay
+        preload="auto"
+        poster=""
+      >
+        <source src="PortfolioHero.mp4" type="video/mp4" />
+      </video>
+      <div class="hero__vignette" aria-hidden="true"></div>
+
+      <div class="hero__overlay" id="heroOverlay">
+        <p class="hero__eyebrow">Portfolio · 2026</p>
+        <h1 class="hero__title">
+          Building practical products<br />with a warm finish.
+        </h1>
+        <p class="hero__sub">
+          Developer &amp; ICT student from Finland. Web platforms,
+          AI experiments, and hackathon-winning builds.
+        </p>
+        <a href="#work" class="hero__cta">See selected work</a>
+      </div>
+
+      <a href="#about" class="hero__scroll" aria-label="Scroll">
+        <span></span>
+      </a>
+    </section>
+
+    <main>
+      <section id="about" class="about">
+        <div class="container about__grid">
+          <div class="about__lead">
+            <p class="eyebrow">About</p>
+            <h2>
+              I design and ship products end-to-end &mdash; from the first
+              landing page to live Stripe checkouts.
+            </h2>
+          </div>
+          <div class="about__body">
+            <p>
+              I am a developer and ICT student from Finland who enjoys
+              turning ideas into working products with modern web
+              technologies and AI-powered workflows. My work spans
+              full-stack web apps, automation pipelines, and
+              hackathon-tempo prototypes.
+            </p>
+            <ul class="about__highlights">
+              <li>
+                <span>10,000+</span>downloads on a gaming-related product
+              </li>
+              <li>
+                <span>$3,000</span>hackathon win at CalHacks, San Francisco
+              </li>
+              <li>
+                <span>3</span>conferences attended &mdash; VivaTech, Slush,
+                TechCrunch Disrupt
+              </li>
+            </ul>
+            <div class="about__stack">
+              <span>Next.js</span><span>React</span><span>TypeScript</span
+              ><span>Tailwind</span><span>Firebase</span><span>Supabase</span
+              ><span>Stripe</span><span>Python</span><span>YOLO</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="work" class="work">
+        <div class="container">
+          <div class="section-head">
+            <p class="eyebrow">Selected Work</p>
+            <h2>Projects, prototypes &amp; platforms.</h2>
+          </div>
+
+          <div class="projects" id="projects"></div>
+        </div>
+      </section>
+
+      <section id="contact" class="contact">
+        <div class="container contact__inner">
+          <p class="eyebrow">Contact</p>
+          <h2>Let's build something with sisu.</h2>
+          <p class="contact__text">
+            Open to freelance, internship, and collaboration opportunities.
+          </p>
+          <div class="contact__links">
+            <a href="mailto:sisu.kahilakoski@gmail.com">sisu.kahilakoski@gmail.com</a>
+            <a
+              href="https://www.linkedin.com/in/sisu-kahilakoski-0226a1369/"
+              target="_blank"
+              rel="noopener"
+              >LinkedIn</a
+            >
+          </div>
+        </div>
+      </section>
+
+      <footer class="footer">
+        <div class="container footer__inner">
+          <span>© 2026 Sisu Kahilakoski</span>
+          <span>Built with sisu.</span>
+        </div>
+      </footer>
+    </main>
+
+    <div
+      class="lightbox"
+      id="lightbox"
+      role="dialog"
+      aria-modal="true"
+      aria-hidden="true"
+    >
+      <button class="lightbox__close" aria-label="Close">×</button>
+      <button class="lightbox__nav lightbox__nav--prev" aria-label="Previous">‹</button>
+      <img class="lightbox__img" alt="" />
+      <button class="lightbox__nav lightbox__nav--next" aria-label="Next">›</button>
+      <div class="lightbox__caption"></div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
