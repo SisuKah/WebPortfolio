@@ -1,7 +1,8 @@
 // ---------- HERO VIDEO: play once, freeze on last frame ----------
 (() => {
   const video = document.getElementById("heroVideo");
-  const unmuteBtn = document.getElementById("heroUnmute");
+  const gate = document.getElementById("enterGate");
+  const enterBtn = document.getElementById("enterGateBtn");
   if (!video) return;
 
   video.addEventListener("ended", () => {
@@ -14,71 +15,31 @@
     video.removeAttribute("loop");
   });
 
-  const tryUnmutedPlay = async () => {
+  // Lock scrolling while the gate is up.
+  if (gate) document.body.style.overflow = "hidden";
+
+  const enter = async () => {
     video.muted = false;
     video.volume = 1;
     try {
       await video.play();
-      if (unmuteBtn) unmuteBtn.hidden = true;
-      return true;
     } catch (_) {
-      return false;
-    }
-  };
-
-  const unmuteOnFirstInteraction = () => {
-    const events = [
-      "pointerdown",
-      "click",
-      "keydown",
-      "touchstart",
-      "wheel",
-      "scroll",
-    ];
-    const handler = async () => {
-      events.forEach((evt) =>
-        window.removeEventListener(evt, handler, true)
-      );
-      video.muted = false;
-      video.volume = 1;
+      // Last-ditch fallback: play muted so the visual still runs.
+      video.muted = true;
       try {
         await video.play();
       } catch (_) {}
-      if (unmuteBtn) unmuteBtn.hidden = true;
-    };
-    events.forEach((evt) =>
-      window.addEventListener(evt, handler, {
-        capture: true,
-        passive: true,
-      })
-    );
-  };
-
-  const startMutedFallback = async () => {
-    video.muted = true;
-    try {
-      await video.play();
-    } catch (_) {}
-    if (unmuteBtn) unmuteBtn.hidden = false;
-    unmuteOnFirstInteraction();
-  };
-
-  (async () => {
-    if (!(await tryUnmutedPlay())) {
-      await startMutedFallback();
     }
-  })();
+    if (gate) {
+      gate.classList.add("is-leaving");
+      setTimeout(() => {
+        gate.remove();
+        document.body.style.overflow = "";
+      }, 600);
+    }
+  };
 
-  if (unmuteBtn) {
-    unmuteBtn.addEventListener("click", async () => {
-      video.muted = false;
-      video.volume = 1;
-      try {
-        await video.play();
-      } catch (_) {}
-      unmuteBtn.hidden = true;
-    });
-  }
+  if (enterBtn) enterBtn.addEventListener("click", enter);
 })();
 
 // ---------- PROJECTS DATA ----------
