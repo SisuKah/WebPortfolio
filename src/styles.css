@@ -44,6 +44,7 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 body {
@@ -261,6 +262,7 @@ p {
 .about {
   padding: clamp(5rem, 10vw, 9rem) 0;
   position: relative;
+  overflow: hidden;
 }
 
 .about__grid {
@@ -378,6 +380,7 @@ p {
 .work {
   padding: clamp(5rem, 10vw, 9rem) 0;
   position: relative;
+  overflow: hidden;
 }
 
 .section-head {
